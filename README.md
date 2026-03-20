@@ -1,6 +1,6 @@
 # CNRS Job Scraper v3
 
-A scraper made tom make my pookie's job search easier. It retrieves and parses job listings from the [cnrs](https://emploi.cnrs.fr/Offres/Recherche.aspx) made with this bs asp framework.
+A scraper built to make my pookie's job search easier. It retrieves and parses job listings from the [cnrs](https://emploi.cnrs.fr/Offres/Recherche.aspx) website made with this bs asp framework.
 It allows filtering by contract type, location, and keywords.
 
 ## TODO
