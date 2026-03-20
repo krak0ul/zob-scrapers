@@ -1,6 +1,6 @@
 # CNRS Job Scraper v3
 
-A scraper built to make my pookie's job search easier. It retrieves and parses job listings from the [cnrs](https://emploi.cnrs.fr/Offres/Recherche.aspx) website made with this bs asp framework.
+A scraper built with scrapy to make my pookie's job search easier. It retrieves and parses job listings from the [cnrs](https://emploi.cnrs.fr/Offres/Recherche.aspx) website made with this bs asp framework.
 It allows filtering by contract type, location, and keywords.
 
 ## TODO
@@ -25,7 +25,7 @@ cnrs_jobs/
 ```
 
 ## Setup
-
+Make a venv and we're rolling
 ```bash
 pip install -r requirements.txt
 ```
