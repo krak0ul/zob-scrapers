@@ -1,0 +1,21 @@
+# CEA Job Scraper Filters Configuration
+#
+# Available location names:
+#   France, Auvergne-Rhône-Alpes, Isère, Essonne, Paris, Gard,
+#   Bouches du Rhône, Savoie, etc.
+
+filters:
+
+  # Search keywords (matched against title, lab, contract label)
+  keywords: ["chimie"]
+
+  # Keyword matching mode: "any" (OR) or "all" (AND)
+  keyword_mode: any
+
+  # Locations for server-side filtering (submit separate search for each)
+  # Example: ["Isère", "Paris", "Grenoble"]
+  locations: []
+
+  # Contract types to filter
+  # Options: CDI, CDD, Alternance, Stage, Post-Doctorat
+  contract_types: ["CDD"]
