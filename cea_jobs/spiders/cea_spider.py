@@ -66,7 +66,7 @@ class CeaSpider(scrapy.Spider):
         self.filter = JobFilter(cfg, server_side_location=bool(cfg.location_ids))
         self._log_filters(cfg)
 
-        self.stats = {"total": 0, "matched": 0, "skipped": 0, "detail_pages": 0}
+        self.stats = {"total": 0, "matched": 0, "detail_pages": 0}
         self._first_search_done = False
         self.requested_pages = set()
 
@@ -139,6 +139,17 @@ class CeaSpider(scrapy.Spider):
             meta={"dont_cache": True},
         )
 
+    def _get_match_reasons(self) -> str:
+        reasons = []
+        if self.cfg.keywords:
+            reasons.append(f"kw:{','.join(self.cfg.keywords)}")
+        if self.cfg.locations:
+            loc_names = [LOCATION_ID_TO_NAME.get(id, str(id)) for id in self.cfg.location_ids]
+            reasons.append(f"location:{','.join(loc_names)}")
+        if self.cfg.contract_types:
+            reasons.append(f"contract:{','.join(self.cfg.contract_types)}")
+        return ", ".join(reasons) if reasons else "no filters"
+
     def _parse_listing(self, response: Response, page: int, location_id: Optional[int] = None):
         cards = response.css("div.ts-offer-card.Layer")
         if not cards:
@@ -154,16 +165,10 @@ class CeaSpider(scrapy.Spider):
                 continue
 
             self.stats["total"] += 1
-            matched, reasons = self.filter.match(dict(item))
-
-            if matched:
-                self.stats["matched"] += 1
-                item["match_reasons"] = ", ".join(reasons)
-                self.logger.debug(f"✓ {item['reference']}  {item['title'][:55]}")
-                yield item
-            else:
-                self.stats["skipped"] += 1
-                self.logger.debug(f"✗ {item.get('reference','?')}  {item.get('title','')[:55]}")
+            self.stats["matched"] += 1
+            item["match_reasons"] = self._get_match_reasons()
+            self.logger.debug(f"✓ {item['reference']}  {item['title'][:55]}")
+            yield item
 
         for link in _DETAIL_LINK_EXTRACTOR.extract_links(response):
             yield response.follow(link.url, callback=self.parse_detail)
@@ -348,8 +353,6 @@ class CeaSpider(scrapy.Spider):
             f"\n{'─'*52}\n"
             f"  Crawl done : {reason}\n"
             f"  Cards seen : {s['total']}\n"
-            f"  Matched    : {s['matched']}\n"
-            f"  Skipped    : {s['skipped']}\n"
             f"  Detail pages: {s['detail_pages']}\n"
             f"{'─'*52}"
         )

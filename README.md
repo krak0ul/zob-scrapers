@@ -151,8 +151,7 @@ Detail items go to `output/cea_detail_YYYYMMDD_HHMMSS.csv` and `.jsonl`.
 ## Tips
 
 - Delete `.scrapy_cache/` to force a completely fresh crawl.
-- Keywords are matched against: title, lab name, contract label
-- Location filtering is done server-side when locations are specified, with one request per location
+- All filtering (keywords, location, contract type) is done server-side — the spider yields all results returned by the server
+- match_reasons field shows which server filters matched each item
 - Pagination uses URL parameters (`?page=N`) and terminates correctly after the last page
 - Both listing and detail items can exist for the same URL (no deduplication conflict)
-- Contract type matching checks both the normalized code and label
