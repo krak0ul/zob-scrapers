@@ -1,0 +1,12 @@
+filters:
+
+  keywords:
+    - chimie
+
+  keyword_mode: any
+
+  locations: []
+
+  contract_types:
+
+advanced_filters: {}
