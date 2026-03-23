@@ -1,4 +1,4 @@
-# Zob Scrpers
+# Zob Scrapers
 
 ## What are Zob Scrapers
 Python Scrapy Scrapers made to help big Z automate their job search.
