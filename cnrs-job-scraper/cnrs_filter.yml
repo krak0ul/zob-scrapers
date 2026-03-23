@@ -1,0 +1,15 @@
+filters:
+
+  keywords:
+    - bio
+
+  keyword_mode: any
+
+  locations: []
+
+  contract_types:
+    - ITCDD
+    - CHRCDD
+    - STAG
+
+advanced_filters: {}
