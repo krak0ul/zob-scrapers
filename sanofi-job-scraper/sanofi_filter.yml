@@ -1,0 +1,14 @@
+filters:
+  keywords:
+    - data
+    - scientist
+  keyword_mode: any
+  countries:
+    - France
+  regions: []
+  locations:
+    - Paris
+    - Lyon
+  job_families: []
+  employment_types:
+    - Regular
