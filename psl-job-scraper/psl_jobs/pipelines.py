@@ -64,8 +64,8 @@ class DuplicateFilterPipeline:
 class CsvExportPipeline:
     def open_spider(self, spider):
         _ensure_dir()
-        self.job_path = os.path.join(OUTPUT_DIR, f"cnrs_jobs_{TIMESTAMP}.csv")
-        self.detail_path = os.path.join(OUTPUT_DIR, f"cnrs_detail_{TIMESTAMP}.csv")
+        self.job_path = os.path.join(OUTPUT_DIR, f"psl_jobs_{TIMESTAMP}.csv")
+        self.detail_path = os.path.join(OUTPUT_DIR, f"psl_detail_{TIMESTAMP}.csv")
         
         self.job_file = open(self.job_path, "w", newline="", encoding="utf-8")
         self.job_writer = csv.DictWriter(self.job_file, fieldnames=JOB_FIELDS, extrasaction="ignore")
@@ -95,8 +95,8 @@ class CsvExportPipeline:
 class JsonExportPipeline:
     def open_spider(self, spider):
         _ensure_dir()
-        self.job_path = os.path.join(OUTPUT_DIR, f"cnrs_jobs_{TIMESTAMP}.jsonl")
-        self.detail_path = os.path.join(OUTPUT_DIR, f"cnrs_detail_{TIMESTAMP}.jsonl")
+        self.job_path = os.path.join(OUTPUT_DIR, f"psl_jobs_{TIMESTAMP}.jsonl")
+        self.detail_path = os.path.join(OUTPUT_DIR, f"psl_detail_{TIMESTAMP}.jsonl")
         
         self.job_file = open(self.job_path, "w", encoding="utf-8")
         self.detail_file = open(self.detail_path, "w", encoding="utf-8")
